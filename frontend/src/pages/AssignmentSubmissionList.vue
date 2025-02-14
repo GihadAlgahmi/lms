@@ -164,23 +164,23 @@ const reloadSubmissions = () => {
 const submissionColumns = computed(() => {
 	return [
 		{
-			label: 'Member',
+			label: __('Member'),
 			key: 'member_name',
 			width: 1,
 		},
 		{
-			label: 'Assignment',
+			label: __('Assignment'),
 			key: 'assignment_title',
 			width: 2,
 		},
 		{
-			label: 'Submitted',
+			label: __('Submitted'),
 			key: 'creation',
 			width: 1,
 			align: 'left',
 		},
 		{
-			label: 'Status',
+			label: __('Status'),
 			key: 'status',
 			width: 1,
 			align: 'center',
@@ -190,10 +190,10 @@ const submissionColumns = computed(() => {
 
 const statusOptions = computed(() => {
 	return [
-		{ label: '', value: '' },
-		{ label: 'Pass', value: 'Pass' },
-		{ label: 'Fail', value: 'Fail' },
-		{ label: 'Not Graded', value: 'Not Graded' },
+		{ label: __(''), value: '' },
+		{ label: __('Pass'), value: 'Pass' },
+		{ label: __('Fail'), value: 'Fail' },
+		{ label: __('Not Graded'), value: 'Not Graded' },
 	]
 })
 
@@ -210,7 +210,7 @@ const getStatusTheme = (status) => {
 const breadcrumbs = computed(() => {
 	return [
 		{
-			label: 'Assignment Submissions',
+			label: __('Assignment Submissions'),
 		},
 	]
 })

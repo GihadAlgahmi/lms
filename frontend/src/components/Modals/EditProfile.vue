@@ -1,11 +1,11 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Edit your profile',
+			title: __('Edit your profile'),
 			size: 'xl',
 			actions: [
 				{
-					label: 'Save',
+					label: __('Save'),
 					variant: 'solid',
 					onClick: (close) => saveProfile(close),
 				},
@@ -26,7 +26,7 @@
 								{{
 									uploading
 										? `Uploading ${progress}%`
-										: 'Upload a profile image'
+										: __('Upload a profile image')
 								}}
 							</Button>
 						</div>

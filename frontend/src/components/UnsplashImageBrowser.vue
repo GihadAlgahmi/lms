@@ -14,7 +14,7 @@
 						<div class="flex-1">
 							<TextInput
 								type="text"
-								placeholder="search by keyword"
+								:placeholder="__('search by keyword')"
 								v-model="search"
 								:debounce="300"
 							/>
@@ -25,7 +25,7 @@
 							>
 								<div class="w-full text-center">
 									<Button @click="openFileSelector" :loading="uploading">
-										{{ uploading ? `Uploading ${progress}%` : 'Upload Image' }}
+										{{ uploading ? `Uploading ${progress}%` : __('Upload Image') }}
 									</Button>
 								</div>
 							</template>

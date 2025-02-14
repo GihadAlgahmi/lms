@@ -13,7 +13,7 @@
 					<div class="flex items-center justify-center space-x-2">
 						<TextInput
 							type="text"
-							placeholder="search by keyword"
+							:placeholder="__('search by keyword')"
 							v-model="search"
 							:debounce="300"
 							class="flex-1"
@@ -28,7 +28,7 @@
 							>
 								<div class="">
 									<Button @click="openFileSelector" :loading="uploading">
-										{{ uploading ? `Uploading ${progress}%` : 'Upload Image' }}
+										{{ uploading ? `Uploading ${progress}%` : __('Upload Image') }}
 									</Button>
 								</div>
 							</template>
@@ -103,7 +103,7 @@ const saveImage = (file) => {
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()
 	if (!['jpg', 'jpeg', 'png'].includes(extension)) {
-		return 'Only image file is allowed.'
+		return __('Only image file is allowed.')
 	}
 }
 </script>

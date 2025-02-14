@@ -6,7 +6,7 @@
 			size: 'xl',
 			actions: [
 				{
-					label: 'Submit',
+					label: __('Submit'),
 					variant: 'solid',
 					onClick: (close) => submitLiveClass(close),
 				},
@@ -115,7 +115,7 @@ let liveClass = reactive({
 	time: '',
 	duration: '',
 	timezone: '',
-	auto_recording: 'No Recording',
+	auto_recording: __('No Recording'),
 	batch: props.batch,
 	host: user.data.name,
 })
@@ -132,15 +132,15 @@ const getTimezoneOptions = () => {
 const getRecordingOptions = () => {
 	return [
 		{
-			label: 'No Recording',
+			label: __('No Recording'),
 			value: 'No Recording',
 		},
 		{
-			label: 'Local',
+			label: __('Local'),
 			value: 'Local',
 		},
 		{
-			label: 'Cloud',
+			label: __('Cloud'),
 			value: 'Cloud',
 		},
 	]
@@ -197,7 +197,7 @@ const submitLiveClass = (close) => {
 		},
 		onError(err) {
 			createToast({
-				title: 'Error',
+				title: __('Error'),
 				text: err.messages?.[0] || err,
 				icon: 'x',
 				iconClasses: 'bg-surface-red-5 text-ink-white rounded-md p-px',

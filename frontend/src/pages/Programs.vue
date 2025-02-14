@@ -207,7 +207,7 @@ const lockCourse = (course) => {
 
 const breadbrumbs = computed(() => [
 	{
-		label: 'Programs',
+		label: __('Programs'),
 	},
 ])
 </script>

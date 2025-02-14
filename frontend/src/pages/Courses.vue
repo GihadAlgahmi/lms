@@ -20,7 +20,7 @@
 				<div class="w-28 md:w-36">
 					<FormControl
 						type="text"
-						placeholder="Search"
+						:placeholder="__('Search')"
 						v-model="searchQuery"
 						@input="courses.reload()"
 					>
@@ -239,7 +239,7 @@ const makeTabs = computed(() => {
 const addToTabs = (label) => {
 	let courses = getCourses(label.toLowerCase().split(' ').join('_'))
 	tabs.push({
-		label,
+		label: __(label), 
 		courses: computed(() => courses),
 		count: computed(() => courses.length),
 	})
@@ -309,8 +309,8 @@ watch(
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Courses',
-		description: 'All Courses divided by categories',
+		title: __('Courses'),
+		description: __('All Courses divided by categories'),
 	}
 })
 

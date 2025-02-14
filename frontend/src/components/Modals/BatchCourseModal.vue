@@ -74,7 +74,7 @@ const addCourse = (close) => {
 				evaluator.value = null
 			},
 			onError(err) {
-				showToast('Error', err.message[0] || err, 'x')
+				showToast(__('Error'), err.message[0] || err, 'x')
 			},
 		}
 	)

@@ -159,7 +159,7 @@ const dayjs = inject('$dayjs')
 const breadcrumbs = computed(() => {
 	return [
 		{
-			label: 'Statistics',
+			label: __('Statistics'),
 			route: {
 				name: 'Statistics',
 			},
@@ -177,7 +177,7 @@ const signupsChart = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['signups'],
 	params: {
-		chart_name: 'New Signups',
+		chart_name: __('New Signups'),
 	},
 	auto: true,
 })
@@ -186,7 +186,7 @@ const enrollmentChart = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['enrollments'],
 	params: {
-		chart_name: 'Course Enrollments',
+		chart_name: __('Course Enrollments'),
 	},
 	auto: true,
 })
@@ -195,7 +195,7 @@ const lessonCompletion = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['lessonCompletion'],
 	params: {
-		chart_name: 'Lesson Completion',
+		chart_name: __('Lesson Completion'),
 	},
 	auto: true,
 })
@@ -208,7 +208,7 @@ const courseCompletion = createResource({
 
 const signupChartOptions = () => {
 	let options = chartOptions(false)
-	options.plugins.title.text = 'Signups'
+	options.plugins.title.text = __('Signups')
 	options.borderColor = '#4563f0'
 	options.backgroundColor = (ctx) => {
 		const canvas = ctx.chart.ctx
@@ -224,7 +224,7 @@ const signupChartOptions = () => {
 
 const enrollmentChartOptions = () => {
 	let options = chartOptions(false)
-	options.plugins.title.text = 'Enrollments'
+	options.plugins.title.text = __('Enrollments')
 	options.borderColor = '#4563f0'
 	options.backgroundColor = (ctx) => {
 		const canvas = ctx.chart.ctx
@@ -240,7 +240,7 @@ const enrollmentChartOptions = () => {
 
 const lessonChartOptions = () => {
 	let options = chartOptions(false)
-	options.plugins.title.text = 'Milestones'
+	options.plugins.title.text = __('Milestones')
 	options.borderColor = '#4563f0'
 	options.backgroundColor = (ctx) => {
 		const canvas = ctx.chart.ctx
@@ -256,7 +256,7 @@ const lessonChartOptions = () => {
 
 const courseChartOptions = () => {
 	let options = chartOptions(true)
-	options.plugins.title.text = 'Completions'
+	options.plugins.title.text = __('Completions')
 	options.backgroundColor = ['#4563f0', '#f683ae']
 	return options
 }
@@ -319,8 +319,8 @@ const chartOptions = (isPie) => {
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Statistics',
-		description: 'Statistics of the platform',
+		title: __('Statistics'),
+		description: __('Statistics of the platform'),
 	}
 })
 

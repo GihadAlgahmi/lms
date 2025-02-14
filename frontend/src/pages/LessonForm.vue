@@ -18,14 +18,14 @@
 					<div class="w-5/6 mx-auto">
 						<FormControl
 							v-model="lesson.title"
-							label="Title"
+							:label="__('Title')"
 							class="mb-4"
 							:required="true"
 						/>
 						<FormControl
 							v-model="lesson.include_in_preview"
 							type="checkbox"
-							label="Include in Preview"
+							:label="__('Include in Preview')"
 						/>
 					</div>
 					<div class="border-t mt-4">
@@ -395,7 +395,7 @@ const createNewLesson = () => {
 					{
 						onSuccess() {
 							capture('lesson_created')
-							showToast('Success', 'Lesson created successfully', 'check')
+							showToast(__('Success'), 'Lesson created successfully', 'check')
 							/* if (!settingsStore.onboardingDetails.data?.is_onboarded) {
 								settingsStore.onboardingDetails.reload()
 							} */
@@ -405,7 +405,7 @@ const createNewLesson = () => {
 				)
 			},
 			onError(err) {
-				showToast('Error', err.message, 'x')
+				showToast(__('Error'), err.message, 'x')
 			},
 		}
 	)
@@ -422,11 +422,11 @@ const editCurrentLesson = () => {
 			},
 			onSuccess() {
 				showSuccessMessage
-					? showToast('Success', 'Lesson updated successfully', 'check')
+					? showToast(__('Success'), 'Lesson updated successfully', 'check')
 					: ''
 			},
 			onError(err) {
-				showToast('Error', err.message, 'x')
+				showToast(__('Error'), err.message, 'x')
 			},
 		}
 	)
@@ -458,7 +458,7 @@ const showToast = (title, text, icon) => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Courses',
+			label: __('Courses'),
 			route: { name: 'Courses' },
 		},
 		{
@@ -481,7 +481,7 @@ const breadcrumbs = computed(() => {
 		})
 	}
 	crumbs.push({
-		label: lessonDetails?.data?.lesson ? 'Edit Lesson' : 'Create Lesson',
+		label: lessonDetails?.data?.lesson ? __('Edit Lesson') : __('Create Lesson'),
 		route: {
 			name: 'LessonForm',
 			params: {
@@ -496,8 +496,8 @@ const breadcrumbs = computed(() => {
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Lesson Editor',
-		description: 'Create and edit lessons for your course',
+		title: __('Lesson Editor'),
+		description: __('Create and edit lessons for your course'),
 	}
 })
 

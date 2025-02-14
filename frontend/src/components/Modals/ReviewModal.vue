@@ -6,7 +6,7 @@
 			size: 'xl',
 			actions: [
 				{
-					label: 'Submit',
+					label: __('Submit'),
 					variant: 'solid',
 					onClick: (close) => submitReview(close),
 				},
@@ -70,7 +70,7 @@ function submitReview(close) {
 	createReview.submit(review, {
 		validate() {
 			if (!review.rating) {
-				return 'Please enter a rating.'
+				return __('Please enter a rating.')
 			}
 		},
 		onSuccess() {

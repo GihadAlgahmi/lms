@@ -7,7 +7,7 @@
 			size: 'lg',
 			actions: [
 				{
-					label: 'Submit',
+					label: __('Submit'),
 					variant: 'solid',
 					onClick: (close) => {
 						submitResume(close)
@@ -39,7 +39,7 @@
 							<div class="">
 								<Button @click="openFileSelector" :loading="uploading">
 									{{
-										uploading ? `Uploading ${progress}%` : 'Upload your resume'
+										uploading ? `Uploading ${progress}%` : __('Upload your resume')
 									}}
 								</Button>
 							</div>
@@ -84,7 +84,7 @@ const props = defineProps({
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()
 	if (extension != 'pdf') {
-		return 'Only PDF file is allowed'
+		return __('Only PDF file is allowed')
 	}
 }
 
@@ -108,13 +108,13 @@ const submitResume = (close) => {
 		{
 			validate() {
 				if (!resume.value) {
-					return 'Please upload your resume'
+					return __('Please upload your resume')
 				}
 			},
 			onSuccess() {
 				createToast({
-					title: 'Success',
-					text: 'Your application has been submitted',
+					title: __('Success'),
+					text: __('Your application has been submitted'),
 					icon: 'check',
 					iconClasses: 'bg-surface-green-3 text-ink-white rounded-md p-px',
 				})
@@ -123,7 +123,7 @@ const submitResume = (close) => {
 			},
 			onError(err) {
 				createToast({
-					title: 'Error',
+					title: __('Error'),
 					text: err.messages?.[0] || err,
 					icon: 'x',
 					iconClasses: 'bg-surface-red-5 text-ink-white rounded-md p-px',

@@ -186,11 +186,11 @@
 							type="select"
 							:options="[
 								{
-									label: 'Online',
+									label: __('Online'),
 									value: 'Online',
 								},
 								{
-									label: 'Offline',
+									label: __('Offline'),
 									value: 'Offline',
 								},
 							]"
@@ -412,7 +412,7 @@ const createNewBatch = () => {
 				})
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -431,7 +431,7 @@ const editBatchDetails = () => {
 				})
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -455,7 +455,7 @@ const validateFile = (file) => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Batches',
+			label: __('Batches'),
 			route: {
 				name: 'Batches',
 			},
@@ -473,7 +473,7 @@ const breadcrumbs = computed(() => {
 		})
 	}
 	crumbs.push({
-		label: props.batchName == 'new' ? 'New Batch' : 'Edit Batch',
+		label: props.batchName == 'new' ? __('New Batch') : __('Edit Batch'),
 		route: { name: 'BatchForm', params: { batchName: props.batchName } },
 	})
 	return crumbs

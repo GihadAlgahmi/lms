@@ -327,7 +327,7 @@ const addNewSubmission = () => {
 		{},
 		{
 			onSuccess(data) {
-				showToast('Success', 'Assignment submitted successfully.', 'check')
+				showToast(__('Success'), __('Assignment submitted successfully.'), 'check')
 				if (router.currentRoute.value.name == 'AssignmentSubmission') {
 					router.push({
 						name: 'AssignmentSubmission',
@@ -344,7 +344,7 @@ const addNewSubmission = () => {
 				submissionResource.reload()
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -426,9 +426,9 @@ const canModifyAssignment = computed(() => {
 
 const submissionStatusOptions = computed(() => {
 	return [
-		{ label: 'Not Graded', value: 'Not Graded' },
-		{ label: 'Pass', value: 'Pass' },
-		{ label: 'Fail', value: 'Fail' },
+		{ label: __('Not Graded'), value: 'Not Graded' },
+		{ label: __('Pass'), value: 'Pass' },
+		{ label: __('Fail'), value: 'Fail' },
 	]
 })
 

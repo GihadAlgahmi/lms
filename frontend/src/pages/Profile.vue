@@ -152,17 +152,17 @@ const setActiveTab = () => {
 			activeTab.value = convertToTitleCase(section)
 		}
 	})
-	if (!activeTab.value) activeTab.value = 'About'
+	if (!activeTab.value) activeTab.value = __('About')
 }
 
 watchEffect(() => {
 	if (activeTab.value) {
 		let route = {
-			About: { name: 'ProfileAbout' },
-			Certificates: { name: 'ProfileCertificates' },
-			Roles: { name: 'ProfileRoles' },
-			Slots: { name: 'ProfileEvaluator' },
-			Schedule: { name: 'ProfileEvaluationSchedule' },
+			[__('About')]: { name: 'ProfileAbout' },
+			[__('Certificates')]: { name: 'ProfileCertificates' },
+			[__('Roles')]: { name: 'ProfileRoles' },
+			[__('Slots')]: { name: 'ProfileEvaluator' },
+			[__('Schedule')]: { name: 'ProfileEvaluationSchedule' },
 		}[activeTab.value]
 		router.push(route)
 	}
@@ -184,14 +184,14 @@ const isSessionUser = () => {
 }
 
 const getTabButtons = () => {
-	let buttons = [{ label: 'About' }, { label: 'Certificates' }]
-	if ($user.data?.is_moderator) buttons.push({ label: 'Roles' })
+	let buttons = [{ label: __('About') }, { label: __('Certificates') }]
+	if ($user.data?.is_moderator) buttons.push({ label: __('Roles') })
 	if (
 		isSessionUser() &&
 		($user.data?.is_evaluator || $user.data?.is_moderator)
 	) {
-		buttons.push({ label: 'Slots' })
-		buttons.push({ label: 'Schedule' })
+		buttons.push({ label: __('Slots') })
+		buttons.push({ label: __('Schedule') })
 	}
 
 	return buttons
@@ -200,7 +200,7 @@ const getTabButtons = () => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'People',
+			label: __('People'),
 		},
 		{
 			label: profile.data?.full_name,

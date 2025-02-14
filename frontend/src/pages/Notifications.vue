@@ -13,7 +13,7 @@
 			</Button>
 			<TabButtons
 				class="inline-block"
-				:buttons="[{ label: 'Unread', active: true }, { label: 'Read' }]"
+				:buttons="[{ label: __('Unread'), active: true }, { label: __('Read') }]"
 				v-model="activeTab"
 			/>
 		</div>
@@ -73,7 +73,7 @@ import { updateDocumentTitle } from '@/utils'
 
 const user = inject('$user')
 const socket = inject('$socket')
-const activeTab = ref('Unread')
+const activeTab = ref(__('Unread'))
 const router = useRouter()
 
 onMounted(() => {
@@ -85,7 +85,7 @@ onMounted(() => {
 })
 
 const notifications = computed(() => {
-	return activeTab.value === 'Unread'
+	return activeTab.value === __('Unread')
 		? unReadNotifications.data
 		: readNotifications.data
 })
@@ -98,7 +98,7 @@ const unReadNotifications = createListResource({
 		read: 0,
 	},
 	auto: true,
-	cache: 'Unread Notifications',
+	cache: __('Unread Notifications'),
 })
 
 const readNotifications = createListResource({
@@ -109,7 +109,7 @@ const readNotifications = createListResource({
 		read: 1,
 	},
 	auto: true,
-	cache: 'Read Notifications',
+	cache: __('Read Notifications'),
 })
 
 const markAsRead = createResource({
@@ -136,7 +136,7 @@ const markAllAsRead = createResource({
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Notifications',
+			label: __('Notifications'),
 			route: {
 				name: 'Notifications',
 			},
@@ -147,8 +147,8 @@ const breadcrumbs = computed(() => {
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Notifications',
-		description: 'All your notifications in one place.',
+		title: __('Notifications'),
+		description: __('All your notifications in one place.'),
 	}
 })
 
