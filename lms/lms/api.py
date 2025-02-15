@@ -285,6 +285,12 @@ def get_job_opportunities(filters=None, orFilters=None):
 
 
 @frappe.whitelist(allow_guest=True)
+def get_direction():
+    """Get direction (ltr/rtl)."""
+    direction = frappe.db.get_single_value("LMS Settings", "direction")
+    return {"direction": "rtl" if direction == "Right-to-left (RTL)" else "ltr"}
+ 
+@frappe.whitelist(allow_guest=True)
 def get_chart_details():
 	details = frappe._dict()
 	details.enrollments = frappe.db.count("LMS Enrollment")

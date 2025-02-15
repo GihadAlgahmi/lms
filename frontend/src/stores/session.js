@@ -56,6 +56,16 @@ export const sessionStore = defineStore('lms-session', () => {
 		auto: false,
 	})
 
+	
+	const direction = createResource({
+		url: 'lms.lms.api.get_direction',
+		cache: 'direction',
+		auto: true,
+		onSuccess({ direction }) {
+			document.body.setAttribute('dir', direction);
+		},
+	});
+
 	return {
 		user,
 		isLoggedIn,
@@ -63,5 +73,6 @@ export const sessionStore = defineStore('lms-session', () => {
 		logout,
 		branding,
 		sidebarSettings,
+		direction,
 	}
 })
