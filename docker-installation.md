@@ -1,7 +1,7 @@
 **Step 1:** Clone the repo
 
 ```
-$ git clone https://github.com/frappe/lms.git
+$ git clone https://github.com/GihadAlgahmi/lms.git
 
 $ cd lms
 

@@ -2282,7 +2282,7 @@ msgstr ""
 
 #: frontend/src/components/BatchFeedback.vue:11
 msgid "Help Us Improve"
-msgstr ""
+msgstr "ساعدنا على التحسن"
 
 #: lms/templates/courses_created.html:15
 msgid "Help others learn something new by creating a course."

@@ -11,7 +11,7 @@ setup(
 	version=version,
 	description="LMS App",
 	author="Frappe",
-	author_email="school@frappe.io",
+	author_email="gihadalgahmi@gmail.com",
 	packages=find_packages(),
 	zip_safe=False,
 	include_package_data=True,
