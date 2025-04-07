@@ -139,7 +139,7 @@ const renderEditor = (holder) => {
 const lesson = reactive({
 	title: '',
 	include_in_preview: false,
-	body: 'Test',
+	body: '',
 	instructor_notes: '',
 	content: '',
 })
@@ -294,7 +294,7 @@ const convertToJSON = (lessonData) => {
 				type: 'upload',
 				data: {
 					file_url: video,
-					file_type: 'video',
+					file_type: video.split('.').pop(),
 				},
 			})
 		} else if (block.includes('{{ Audio')) {
@@ -303,7 +303,7 @@ const convertToJSON = (lessonData) => {
 				type: 'upload',
 				data: {
 					file_url: audio,
-					file_type: 'audio',
+					file_type: audio.split('.').pop(),
 				},
 			})
 		} else if (block.includes('{{ PDF')) {
@@ -395,7 +395,7 @@ const createNewLesson = () => {
 					{
 						onSuccess() {
 							capture('lesson_created')
-							showToast(__('Success'), 'Lesson created successfully', 'check')
+							showToast('Success', 'Lesson created successfully', 'check')
 							/* if (!settingsStore.onboardingDetails.data?.is_onboarded) {
 								settingsStore.onboardingDetails.reload()
 							} */
@@ -405,7 +405,7 @@ const createNewLesson = () => {
 				)
 			},
 			onError(err) {
-				showToast(__('Error'), err.message, 'x')
+				showToast('Error', err.message, 'x')
 			},
 		}
 	)
@@ -422,11 +422,11 @@ const editCurrentLesson = () => {
 			},
 			onSuccess() {
 				showSuccessMessage
-					? showToast(__('Success'), 'Lesson updated successfully', 'check')
+					? showToast('Success', 'Lesson updated successfully', 'check')
 					: ''
 			},
 			onError(err) {
-				showToast(__('Error'), err.message, 'x')
+				showToast('Error', err.message, 'x')
 			},
 		}
 	)
@@ -458,7 +458,7 @@ const showToast = (title, text, icon) => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: __('Courses'),
+			label: 'Courses',
 			route: { name: 'Courses' },
 		},
 		{
@@ -481,7 +481,7 @@ const breadcrumbs = computed(() => {
 		})
 	}
 	crumbs.push({
-		label: lessonDetails?.data?.lesson ? __('Edit Lesson') : __('Create Lesson'),
+		label: lessonDetails?.data?.lesson ? 'Edit Lesson' : 'Create Lesson',
 		route: {
 			name: 'LessonForm',
 			params: {
@@ -496,8 +496,8 @@ const breadcrumbs = computed(() => {
 
 const pageMeta = computed(() => {
 	return {
-		title: __('Lesson Editor'),
-		description: __('Create and edit lessons for your course'),
+		title: 'Lesson Editor',
+		description: 'Create and edit lessons for your course',
 	}
 })
 

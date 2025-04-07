@@ -2,7 +2,7 @@
 	<div v-if="batch.data" class="border-2 rounded-md p-5 lg:w-72">
 		<div
 			v-if="batch.data.seat_count && seats_left > 0"
-			class="text-xs bg-green-200 text-green-800 float-right px-2 py-0.5 rounded-md"
+			class="text-xs bg-green-100 text-green-700 float-right px-2 py-0.5 rounded-md"
 		>
 			{{ seats_left }}
 			<span v-if="seats_left > 1">
@@ -14,7 +14,7 @@
 		</div>
 		<div
 			v-else-if="batch.data.seat_count && seats_left <= 0"
-			class="text-xs bg-red-200 text-red-900 float-right px-2 py-0.5 rounded-md"
+			class="text-xs bg-red-100 text-red-700 float-right px-2 py-0.5 rounded-md"
 		>
 			{{ __('Sold Out') }}
 		</div>
@@ -69,7 +69,11 @@
 					name: batch.data.name,
 				},
 			}"
-			v-else-if="batch.data.paid_batch && batch.data.seats_left"
+			v-else-if="
+				batch.data.paid_batch &&
+				batch.data.seats_left > 0 &&
+				batch.data.accept_enrollments
+			"
 		>
 			<Button v-if="!isStudent" class="w-full mt-4" variant="solid">
 				<span>
@@ -80,7 +84,11 @@
 		<Button
 			variant="solid"
 			class="w-full mt-2"
-			v-else-if="batch.data.allow_self_enrollment && batch.data.seats_left"
+			v-else-if="
+				batch.data.allow_self_enrollment &&
+				batch.data.seats_left &&
+				batch.data.accept_enrollments
+			"
 			@click="enrollInBatch()"
 		>
 			{{ __('Enroll Now') }}
@@ -112,6 +120,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const user = inject('$user')
+const dayjs = inject('$dayjs')
 
 const props = defineProps({
 	batch: {

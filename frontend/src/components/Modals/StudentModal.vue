@@ -6,7 +6,7 @@
 			size: 'sm',
 			actions: [
 				{
-					label: __('Submit'),
+					label: 'Submit',
 					variant: 'solid',
 					onClick: (close) => addStudent(close),
 				},

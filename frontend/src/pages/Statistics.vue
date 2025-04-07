@@ -195,7 +195,7 @@ const lessonCompletion = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['lessonCompletion'],
 	params: {
-		chart_name: __('Lesson Completion'),
+		chart_name: __('Lesson Completions'),
 	},
 	auto: true,
 })

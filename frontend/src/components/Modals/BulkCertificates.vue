@@ -6,7 +6,7 @@
 			size: 'lg',
 			actions: [
 				{
-					label: __('Create'),
+					label: 'Create',
 					variant: 'solid',
 					onClick: ({ close }) => {
 						generateCertificates(close)

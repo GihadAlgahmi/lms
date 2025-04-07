@@ -188,12 +188,12 @@ const canSeeAddButton = () => {
 const getAssessmentColumns = () => {
 	let columns = [
 		{
-			label: __('Assessment'),
+			label: 'Assessment',
 			key: 'title',
 			width: '25rem',
 		},
 		{
-			label: __('Type'),
+			label: 'Type',
 			key: 'assessment_type',
 			width: '15rem',
 		},
@@ -201,7 +201,7 @@ const getAssessmentColumns = () => {
 
 	if (!user.data?.is_moderator) {
 		columns.push({
-			label: __('Status/Percentage'),
+			label: 'Status/Percentage',
 			key: 'status',
 			align: 'left',
 			width: '10rem',

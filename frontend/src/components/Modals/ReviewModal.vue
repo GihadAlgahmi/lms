@@ -6,7 +6,7 @@
 			size: 'xl',
 			actions: [
 				{
-					label: __('Submit'),
+					label: 'Submit',
 					variant: 'solid',
 					onClick: (close) => submitReview(close),
 				},
@@ -33,7 +33,7 @@
 </template>
 <script setup>
 import { Dialog, Textarea, createResource } from 'frappe-ui'
-import { defineModel, reactive } from 'vue'
+import { reactive } from 'vue'
 import Rating from '@/components/Controls/Rating.vue'
 import { createToast } from '@/utils/'
 
@@ -70,7 +70,7 @@ function submitReview(close) {
 	createReview.submit(review, {
 		validate() {
 			if (!review.rating) {
-				return __('Please enter a rating.')
+				return 'Please enter a rating.'
 			}
 		},
 		onSuccess() {

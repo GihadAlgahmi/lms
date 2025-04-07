@@ -250,7 +250,7 @@ const createNewJob = () => {
 				})
 			},
 			onError(err) {
-				showToast(__('Error'), err.messages?.[0] || err, 'x')
+				showToast('Error', err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -269,7 +269,7 @@ const editJobDetails = () => {
 				})
 			},
 			onError(err) {
-				showToast(__('Error'), err.messages?.[0] || err, 'x')
+				showToast('Error', err.messages?.[0] || err, 'x')
 			},
 		}
 	)

@@ -29,6 +29,12 @@ const routes = [
 		props: true,
 	},
 	{
+		path: '/courses/:courseName/certification',
+		name: 'CourseCertification',
+		component: () => import('@/pages/CourseCertification.vue'),
+		props: true,
+	},
+	{
 		path: '/courses/:courseName/learn/:chapterName',
 		name: 'SCORMChapter',
 		component: () => import('@/pages/SCORMChapter.vue'),
@@ -183,11 +189,11 @@ const routes = [
 		component: () => import('@/pages/ProgramForm.vue'),
 		props: true,
 	},
-	{
-		path: '/programs',
-		name: 'Programs',
-		component: () => import('@/pages/Programs.vue'),
-	},
+	// {
+	// 	path: '/programs',
+	// 	name: 'Programs',
+	// 	component: () => import('@/pages/Programs.vue'),
+	// },
 	{
 		path: '/assignments',
 		name: 'Assignments',
@@ -219,7 +225,7 @@ let router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
 	const { userResource } = usersStore()
-	const { isLoggedIn } = sessionStore()
+	let { isLoggedIn } = sessionStore()
 	const { allowGuestAccess } = useSettings()
 
 	try {

@@ -5,7 +5,7 @@
 			size: '2xl',
 			actions: [
 				{
-					label: __('Post'),
+					label: 'Post',
 					variant: 'solid',
 					onClick: (close) => submitTopic(close),
 				},
@@ -35,7 +35,7 @@
 </template>
 <script setup>
 import { Dialog, FormControl, TextEditor, createResource } from 'frappe-ui'
-import { reactive, defineModel } from 'vue'
+import { reactive } from 'vue'
 import { showToast, singularize } from '@/utils'
 
 const topics = defineModel('reloadTopics')
@@ -115,7 +115,7 @@ const submitTopic = (close) => {
 				)
 			},
 			onError(err) {
-				showToast(__('Error'), err.message, 'x')
+				showToast('Error', err.message, 'x')
 			},
 		}
 	)

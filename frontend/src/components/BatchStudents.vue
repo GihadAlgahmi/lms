@@ -271,19 +271,19 @@ const students = createResource({
 const getStudentColumns = () => {
 	let columns = [
 		{
-			label: __('Full Name'),
+			label: 'Full Name',
 			key: 'full_name',
 			width: '20rem',
 			icon: 'user',
 		},
 		{
-			label: __('Progress'),
+			label: 'Progress',
 			key: 'progress',
 			width: '15rem',
 			icon: 'activity',
 		},
 		{
-			label: __('Last Active'),
+			label: 'Last Active',
 			key: 'last_active',
 			width: '10rem',
 			align: 'center',

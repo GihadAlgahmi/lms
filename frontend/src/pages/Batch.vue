@@ -6,7 +6,7 @@
 			<Breadcrumbs class="h-7" :items="breadcrumbs" />
 			<div class="flex items-center space-x-2">
 				<Button
-					v-if="user.data?.is_moderator"
+					v-if="user.data?.is_moderator && batch.data?.certification"
 					@click="openCertificateDialog = true"
 				>
 					{{ __('Generate Certificates') }}
@@ -21,7 +21,10 @@
 				</Button>
 			</div>
 		</header>
-		<div v-if="batch.data" class="grid grid-cols-[75%,25%]">
+		<div
+			v-if="batch.data"
+			class="grid grid-cols-[75%,25%] h-[calc(100vh-3.2rem)]"
+		>
 			<div class="border-r">
 				<Tabs
 					v-model="tabIndex"
@@ -57,25 +60,25 @@
 					</template>
 					<template #tab-panel="{ tab }">
 						<div class="pt-5 px-5 pb-10">
-							<div v-if="tab.label == __('Courses')">
+							<div v-if="tab.label == 'Courses'">
 								<BatchCourses :batch="batch.data.name" />
 							</div>
-							<div v-else-if="tab.label == __('Dashboard') && isStudent">
+							<div v-else-if="tab.label == 'Dashboard' && isStudent">
 								<BatchDashboard :batch="batch" :isStudent="isStudent" />
 							</div>
-							<div v-else-if="tab.label == __('Dashboard')">
+							<div v-else-if="tab.label == 'Dashboard'">
 								<BatchStudents :batch="batch.data" />
 							</div>
-							<div v-else-if="tab.label == __('Classes')">
+							<div v-else-if="tab.label == 'Classes'">
 								<LiveClass :batch="batch.data.name" />
 							</div>
-							<div v-else-if="tab.label == __('Assessments')">
+							<div v-else-if="tab.label == 'Assessments'">
 								<Assessments :batch="batch.data.name" />
 							</div>
-							<div v-else-if="tab.label == __('Announcements')">
+							<div v-else-if="tab.label == 'Announcements'">
 								<Announcements :batch="batch.data.name" />
 							</div>
-							<div v-else-if="tab.label == __('Discussions')">
+							<div v-else-if="tab.label == 'Discussions'">
 								<Discussions
 									doctype="LMS Batch"
 									:docname="batch.data.name"
@@ -85,7 +88,7 @@
 									:scrollToBottom="false"
 								/>
 							</div>
-							<div v-else-if="tab.label == __('Feedback')">
+							<div v-else-if="tab.label == 'Feedback'">
 								<BatchFeedback :batch="batch.data.name" />
 							</div>
 						</div>
@@ -190,8 +193,9 @@
 	<BulkCertificates v-model="openCertificateDialog" :batch="batch.data" />
 </template>
 <script setup>
-import { Breadcrumbs, Button, createResource, Tabs, Badge } from 'frappe-ui'
 import { computed, inject, ref } from 'vue'
+import { useRouteQuery } from '@vueuse/router'
+import { Breadcrumbs, Button, createResource, Tabs, Badge } from 'frappe-ui'
 import CourseInstructors from '@/components/CourseInstructors.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import {
@@ -240,10 +244,10 @@ const batch = createResource({
 })
 
 const breadcrumbs = computed(() => {
-	let crumbs = [{ label: __('Batches'), route: { name: 'Batches' } }]
+	let crumbs = [{ label: 'Batches', route: { name: 'Batches' } }]
 	if (!isStudent.value) {
 		crumbs.push({
-			label: __('Details'),
+			label: 'Details',
 			route: {
 				name: 'BatchDetail',
 				params: {
@@ -267,50 +271,50 @@ const isStudent = computed(() => {
 	)
 })
 
-const tabIndex = ref(0)
+const tabIndex = useRouteQuery('tab', 0, { transform: Number })
 const tabs = computed(() => {
 	let batchTabs = []
 	batchTabs.push({
-		label: __('Dashboard'),
+		label: 'Dashboard',
 		icon: LayoutDashboard,
 	})
 
 	batchTabs.push({
-		label: __('Courses'),
+		label: 'Courses',
 		icon: BookOpen,
 	})
 
 	batchTabs.push({
-		label: __('Classes'),
+		label: 'Classes',
 		icon: Laptop,
 	})
 
 	if (user.data?.is_moderator) {
 		batchTabs.push({
-			label: __('Assessments'),
+			label: 'Assessments',
 			icon: BookOpenCheck,
 		})
 	}
 
 	batchTabs.push({
-		label: __('Announcements'),
+		label: 'Announcements',
 		icon: Mail,
 	})
 
 	batchTabs.push({
-		label: __('Discussions'),
+		label: 'Discussions',
 		icon: MessageCircle,
 	})
 
 	batchTabs.push({
-		label: __('Feedback'),
+		label: 'Feedback',
 		icon: ClipboardPen,
 	})
 	return batchTabs
 })
 
 const redirectToLogin = () => {
-	window.location.href = `/login?redirect-to=/batches`
+	window.location.href = `/login?redirect-to=/lms/batches/${props.batchName}`
 }
 
 const openAnnouncementModal = () => {

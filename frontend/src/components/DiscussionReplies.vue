@@ -30,13 +30,13 @@
 						v-if="user.data.name == reply.owner && !reply.editable"
 						:options="[
 							{
-								label: __('Edit'),
+								label: 'Edit',
 								onClick() {
 									reply.editable = true
 								},
 							},
 							{
-								label: __('Delete'),
+								label: 'Delete',
 								onClick() {
 									deleteReply(reply)
 								},
@@ -190,7 +190,7 @@ const postReply = () => {
 			},
 			onError(err) {
 				createToast({
-					title: __('Error'),
+					title: 'Error',
 					text: err.messages?.[0] || err,
 					icon: 'x',
 					iconClasses: 'bg-surface-red-5 text-ink-white rounded-md p-px',

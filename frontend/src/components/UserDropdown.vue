@@ -66,6 +66,14 @@ import LMSLogo from '@/components/Icons/LMSLogo.vue'
 import { sessionStore } from '@/stores/session'
 import { Dropdown } from 'frappe-ui'
 import Apps from '@/components/Apps.vue'
+import { useRouter } from 'vue-router'
+import { convertToTitleCase } from '@/utils'
+import { usersStore } from '@/stores/user'
+import { useSettings } from '@/stores/settings'
+import { markRaw, watch, ref, onMounted, computed } from 'vue'
+import { createDialog } from '@/utils/dialogs'
+import SettingsModal from '@/components/Modals/Settings.vue'
+import FrappeCloudIcon from '@/components/Icons/FrappeCloudIcon.vue'
 import {
 	ChevronDown,
 	LogIn,
@@ -75,12 +83,6 @@ import {
 	Settings,
 	Sun,
 } from 'lucide-vue-next'
-import { useRouter } from 'vue-router'
-import { convertToTitleCase } from '../utils'
-import { usersStore } from '@/stores/user'
-import { useSettings } from '@/stores/settings'
-import { markRaw, watch, ref, onMounted, computed } from 'vue'
-import SettingsModal from '@/components/Modals/Settings.vue'
 
 const router = useRouter()
 const { logout, branding } = sessionStore()
@@ -89,6 +91,8 @@ const settingsStore = useSettings()
 let { isLoggedIn } = sessionStore()
 const showSettingsModal = ref(false)
 const theme = ref('light')
+const frappeCloudBaseEndpoint = 'https://frappecloud.com'
+const $dialog = createDialog
 
 const props = defineProps({
 	isCollapsed: {
@@ -131,19 +135,19 @@ const userDropdownOptions = computed(() => {
 			},
 		},
 		{
+			icon: theme.value === 'light' ? Moon : Sun,
+			label: 'Toggle Theme',
+			onClick: () => {
+				toggleTheme()
+			},
+		},
+		{
 			component: markRaw(Apps),
 			condition: () => {
 				let cookies = new URLSearchParams(document.cookie.split('; ').join('&'))
 				let system_user = cookies.get('system_user')
 				if (system_user === 'yes') return true
 				else return false
-			},
-		},
-		{
-			icon: theme.value === 'light' ? Moon : Sun,
-			label: 'Toggle Theme',
-			onClick: () => {
-				toggleTheme()
 			},
 		},
 		{
@@ -154,6 +158,33 @@ const userDropdownOptions = computed(() => {
 			},
 			condition: () => {
 				return userResource.data?.is_moderator
+			},
+		},
+		{
+			icon: FrappeCloudIcon,
+			label: 'Login to Frappe Cloud',
+			onClick: () => {
+				$dialog({
+					title: __('Login to Frappe Cloud?'),
+					message: __(
+						'Are you sure you want to login to your Frappe Cloud dashboard?'
+					),
+					actions: [
+						{
+							label: __('Confirm'),
+							variant: 'solid',
+							onClick(close) {
+								loginToFrappeCloud()
+								close()
+							},
+						},
+					],
+				})
+			},
+			condition: () => {
+				return (
+					userResource.data?.is_system_manager && userResource.data?.is_fc_site
+				)
 			},
 		},
 		{
@@ -180,4 +211,12 @@ const userDropdownOptions = computed(() => {
 		},
 	]
 })
+
+const loginToFrappeCloud = () => {
+	let redirect_to = '/dashboard/welcome'
+	if (userResource.data?.site_info.is_payment_method_added) {
+		redirect_to = '/dashboard/sites/' + userResource.data.sitename
+	}
+	window.open(`${frappeCloudBaseEndpoint}${redirect_to}`, '_blank')
+}
 </script>

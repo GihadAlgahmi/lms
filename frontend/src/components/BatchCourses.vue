@@ -113,17 +113,17 @@ const openCourseModal = () => {
 const getCoursesColumns = () => {
 	return [
 		{
-			label: __('Title'),
+			label: 'Title',
 			key: 'title',
 			width: 2,
 		},
 		{
-			label: __('Lessons'),
+			label: 'Lessons',
 			key: 'lessons',
 			align: 'right',
 		},
 		{
-			label: __('Enrollments'),
+			label: 'Enrollments',
 			align: 'right',
 			key: 'enrollments',
 		},

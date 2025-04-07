@@ -210,7 +210,7 @@ const deleteLesson = createResource({
 	},
 	onSuccess() {
 		outline.reload()
-		showToast(__('Success'), __('Lesson deleted successfully'), 'check')
+		showToast('Success', 'Lesson deleted successfully', 'check')
 	},
 })
 
@@ -225,7 +225,7 @@ const updateLessonIndex = createResource({
 		}
 	},
 	onSuccess() {
-		showToast(__('Success'), __('Lesson moved successfully'), 'check')
+		showToast('Success', 'Lesson moved successfully', 'check')
 	},
 })
 
@@ -283,7 +283,7 @@ const deleteChapter = createResource({
 	},
 	onSuccess() {
 		outline.reload()
-		showToast(__('Success'), __('Chapter deleted successfully'), 'check')
+		showToast('Success', 'Chapter deleted successfully', 'check')
 	},
 })
 

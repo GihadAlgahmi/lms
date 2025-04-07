@@ -230,7 +230,7 @@ const addProgramCourse = () => {
 				program.reload()
 			},
 			onError(err) {
-				showToast(__('Error'), err.messages?.[0] || err, 'x')
+				showToast('Error', err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -252,7 +252,7 @@ const addProgramMember = () => {
 				program.reload()
 			},
 			onError(err) {
-				showToast(__('Error'), err.messages?.[0] || err, 'x')
+				showToast('Error', err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -273,7 +273,7 @@ const remove = (selections, unselectAll, doctype) => {
 				program.reload()
 			},
 			onError(err) {
-				showToast(__('Error'), err.messages?.[0] || err, 'x')
+				showToast('Error', err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -299,7 +299,7 @@ const updateOrder = (e) => {
 				program.reload()
 			},
 			onError(err) {
-				showToast(__('Error'), err.messages?.[0] || err, 'x')
+				showToast('Error', err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -318,12 +318,12 @@ const saveProgram = () => {
 const courseColumns = computed(() => {
 	return [
 		{
-			label: __('Title'),
+			label: 'Title',
 			key: 'course_title',
 			width: 3,
 		},
 		{
-			label: __('ID'),
+			label: 'ID',
 			key: 'course',
 			width: 3,
 		},
@@ -333,19 +333,19 @@ const courseColumns = computed(() => {
 const memberColumns = computed(() => {
 	return [
 		{
-			label: __('Member'),
+			label: 'Member',
 			key: 'member',
 			width: 3,
 			align: 'left',
 		},
 		{
-			label: __('Full Name'),
+			label: 'Full Name',
 			key: 'full_name',
 			width: 3,
 			align: 'left',
 		},
 		{
-			label: __('Progress (%)'),
+			label: 'Progress (%)',
 			key: 'progress',
 			width: 3,
 			align: 'right',
@@ -356,11 +356,11 @@ const memberColumns = computed(() => {
 const breadbrumbs = computed(() => {
 	return [
 		{
-			label: __('Programs'),
+			label: 'Programs',
 			route: { name: 'Programs' },
 		},
 		{
-			label: props.programName === 'new' ? __('New Program') : props.programName,
+			label: props.programName === 'new' ? 'New Program' : props.programName,
 		},
 	]
 })

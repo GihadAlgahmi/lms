@@ -62,25 +62,33 @@
 				</div>
 			</div>
 		</div>
-		<SidebarLink
-			:link="{
-				label: sidebarStore.isSidebarCollapsed ? __('Expand') : __('Collapse'),
-			}"
-			:isCollapsed="sidebarStore.isSidebarCollapsed"
-			@click="toggleSidebar()"
-			class="m-2"
-		>
-			<template #icon>
-				<span class="grid h-5 w-6 flex-shrink-0 place-items-center">
-					<CollapseSidebar
-						class="h-4.5 w-4.5 text-ink-gray-7 duration-300 ease-in-out"
-						:class="{
-							'[transform:rotateY(180deg)]': sidebarStore.isSidebarCollapsed,
-						}"
-					/>
-				</span>
-			</template>
-		</SidebarLink>
+		<div>
+			<TrialBanner
+				v-if="
+					userResource.data?.is_system_manager && userResource.data?.is_fc_site
+				"
+				:isSidebarCollapsed="sidebarStore.isSidebarCollapsed"
+			/>
+			<SidebarLink
+				:link="{
+					label: sidebarStore.isSidebarCollapsed ? 'Expand' : 'Collapse',
+				}"
+				:isCollapsed="sidebarStore.isSidebarCollapsed"
+				@click="toggleSidebar()"
+				class="m-2"
+			>
+				<template #icon>
+					<span class="grid h-5 w-6 flex-shrink-0 place-items-center">
+						<CollapseSidebar
+							class="h-4.5 w-4.5 text-ink-gray-7 duration-300 ease-in-out"
+							:class="{
+								'[transform:rotateY(180deg)]': sidebarStore.isSidebarCollapsed,
+							}"
+						/>
+					</span>
+				</template>
+			</SidebarLink>
+		</div>
 	</div>
 	<PageModal
 		v-model="showPageModal"
@@ -101,7 +109,7 @@ import { sessionStore } from '@/stores/session'
 import { useSidebar } from '@/stores/sidebar'
 import { useSettings } from '@/stores/settings'
 import { ChevronRight, Plus } from 'lucide-vue-next'
-import { createResource, Button } from 'frappe-ui'
+import { Button, createResource, TrialBanner } from 'frappe-ui'
 import PageModal from '@/components/Modals/PageModal.vue'
 
 const { user, sidebarSettings } = sessionStore()
@@ -195,36 +203,36 @@ const addAssignments = () => {
 	}
 }
 
-const addPrograms = () => {
-	let activeFor = ['Programs', 'ProgramForm']
-	let index = 1
-	let canAddProgram = false
+// const addPrograms = () => {
+// 	let activeFor = ['Programs', 'ProgramForm']
+// 	let index = 1
+// 	let canAddProgram = false
 
-	if (
-		!isInstructor.value &&
-		!isModerator.value &&
-		settingsStore.learningPaths.data
-	) {
-		sidebarLinks.value = sidebarLinks.value.filter(
-			(link) => link.label !== 'Courses'
-		)
-		activeFor.push('CourseDetail')
-		activeFor.push('Lesson')
-		index = 0
-		canAddProgram = true
-	} else if (isInstructor.value || isModerator.value) {
-		canAddProgram = true
-	}
+// 	if (
+// 		!isInstructor.value &&
+// 		!isModerator.value &&
+// 		settingsStore.learningPaths.data
+// 	) {
+// 		sidebarLinks.value = sidebarLinks.value.filter(
+// 			(link) => link.label !== 'Courses'
+// 		)
+// 		activeFor.push('CourseDetail')
+// 		activeFor.push('Lesson')
+// 		index = 0
+// 		canAddProgram = true
+// 	} else if (isInstructor.value || isModerator.value) {
+// 		canAddProgram = true
+// 	}
 
-	if (canAddProgram) {
-		sidebarLinks.value.splice(index, 0, {
-			label: 'Programs',
-			icon: 'Route',
-			to: 'Programs',
-			activeFor: activeFor,
-		})
-	}
-}
+// 	if (canAddProgram) {
+// 		sidebarLinks.value.splice(index, 0, {
+// 			label: 'Programs',
+// 			icon: 'Route',
+// 			to: 'Programs',
+// 			activeFor: activeFor,
+// 		})
+// 	}
+// }
 
 const openPageModal = (link) => {
 	showPageModal.value = true
@@ -257,7 +265,7 @@ watch(userResource, () => {
 	if (userResource.data) {
 		isModerator.value = userResource.data.is_moderator
 		isInstructor.value = userResource.data.is_instructor
-		addPrograms()
+		// addPrograms()
 		addQuizzes()
 		addAssignments()
 	}

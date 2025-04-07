@@ -57,7 +57,7 @@ const badge = createResource({
 const breadcrumbs = computed(() => {
 	return [
 		{
-			label: __('Badges'),
+			label: 'Badges',
 		},
 		{
 			label: badge.data.badge,

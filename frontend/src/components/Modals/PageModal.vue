@@ -7,7 +7,7 @@
 			size: 'lg',
 			actions: [
 				{
-					label: __('Add'),
+					label: 'Add',
 					variant: 'solid',
 					onClick: (close) => {
 						addWebPage(close)
@@ -78,10 +78,10 @@ const addWebPage = (close) => {
 			onSuccess() {
 				sidebar.value.reload()
 				close()
-				showToast(__('Success'), __('Web page added to sidebar'), 'check')
+				showToast('Success', 'Web page added to sidebar', 'check')
 			},
 			onError(err) {
-				showToast(__('Error'), err.message[0] || err, 'x')
+				showToast('Error', err.message[0] || err, 'x')
 				close()
 			},
 		}

@@ -31,7 +31,7 @@
 </template>
 <script setup>
 import { Dialog, createResource } from 'frappe-ui'
-import { ref, defineModel } from 'vue'
+import { ref } from 'vue'
 import Link from '@/components/Controls/Link.vue'
 import { showToast } from '@/utils'
 
@@ -74,7 +74,7 @@ const addCourse = (close) => {
 				evaluator.value = null
 			},
 			onError(err) {
-				showToast(__('Error'), err.message[0] || err, 'x')
+				showToast('Error', err.message[0] || err, 'x')
 			},
 		}
 	)

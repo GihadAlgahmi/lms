@@ -9,7 +9,6 @@
   "default_home",
   "send_calendar_invite_for_evaluations",
   "is_onboarding_complete",
-  "direction",
   "column_break_zdel",
   "allow_guest_access",
   "enable_learning_paths",
@@ -326,13 +325,6 @@
    "options": "LMS Sidebar Item"
   },
   {
-    "default": "Left-to-right (LTR)",
-    "fieldname": "direction",
-    "fieldtype": "Select",
-    "label": "Direction",
-    "options": "Left-to-right (LTR)\nRight-to-left (RTL)"
-   },
-  {
    "fieldname": "custom_signup_content",
    "fieldtype": "HTML Editor",
    "label": "Custom Signup Content"
@@ -374,8 +366,7 @@
    "label": "Payment Reminder Template",
    "options": "Email Template"
   }
-  ],
-
+ ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],

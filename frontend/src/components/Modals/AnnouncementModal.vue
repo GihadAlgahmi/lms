@@ -6,7 +6,7 @@
 			size: 'xl',
 			actions: [
 				{
-					label: __('Submit'),
+					label: 'Submit',
 					variant: 'solid',
 					onClick: (close) => makeAnnouncement(close),
 				},

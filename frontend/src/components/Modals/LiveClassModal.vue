@@ -6,7 +6,7 @@
 			size: 'xl',
 			actions: [
 				{
-					label: __('Submit'),
+					label: 'Submit',
 					variant: 'solid',
 					onClick: (close) => submitLiveClass(close),
 				},
@@ -39,13 +39,19 @@
 								:required="true"
 							/>
 						</Tooltip>
-						<FormControl
-							v-model="liveClass.timezone"
-							type="select"
-							:options="getTimezoneOptions()"
-							:label="__('Timezone')"
-							:required="true"
-						/>
+
+						<div class="space-y-1.5">
+							<label class="block text-ink-gray-5 text-xs" for="batchTimezone">
+								{{ __('Timezone') }}
+								<span class="text-ink-red-3">*</span>
+							</label>
+							<Autocomplete
+								@update:modelValue="(opt) => (liveClass.timezone = opt.value)"
+								:modelValue="liveClass.timezone"
+								:options="getTimezoneOptions()"
+								:required="true"
+							/>
+						</div>
 					</div>
 					<div>
 						<FormControl
@@ -83,18 +89,14 @@
 </template>
 <script setup>
 import {
-	Input,
-	DatePicker,
-	Select,
-	Textarea,
 	Dialog,
 	createResource,
 	Tooltip,
 	FormControl,
+	Autocomplete,
 } from 'frappe-ui'
-import { reactive, inject } from 'vue'
-import { getTimezones, createToast } from '@/utils/'
-import { Info } from 'lucide-vue-next'
+import { reactive, inject, onMounted } from 'vue'
+import { getTimezones, createToast, getUserTimezone } from '@/utils/'
 
 const liveClasses = defineModel('reloadLiveClasses')
 const show = defineModel()
@@ -115,9 +117,13 @@ let liveClass = reactive({
 	time: '',
 	duration: '',
 	timezone: '',
-	auto_recording: __('No Recording'),
+	auto_recording: 'No Recording',
 	batch: props.batch,
 	host: user.data.name,
+})
+
+onMounted(() => {
+	liveClass.timezone = getUserTimezone()
 })
 
 const getTimezoneOptions = () => {
@@ -132,15 +138,15 @@ const getTimezoneOptions = () => {
 const getRecordingOptions = () => {
 	return [
 		{
-			label: __('No Recording'),
+			label: 'No Recording',
 			value: 'No Recording',
 		},
 		{
-			label: __('Local'),
+			label: 'Local',
 			value: 'Local',
 		},
 		{
-			label: __('Cloud'),
+			label: 'Cloud',
 			value: 'Cloud',
 		},
 	]
@@ -197,7 +203,7 @@ const submitLiveClass = (close) => {
 		},
 		onError(err) {
 			createToast({
-				title: __('Error'),
+				title: 'Error',
 				text: err.messages?.[0] || err,
 				icon: 'x',
 				iconClasses: 'bg-surface-red-5 text-ink-white rounded-md p-px',

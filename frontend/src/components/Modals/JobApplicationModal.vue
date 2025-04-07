@@ -66,7 +66,7 @@
 <script setup>
 import { Dialog, FileUploader, Button, createResource } from 'frappe-ui'
 import { FileText } from 'lucide-vue-next'
-import { ref, inject, defineModel } from 'vue'
+import { ref, inject } from 'vue'
 import { createToast, getFileSize } from '@/utils/'
 
 const resume = ref(null)
@@ -84,7 +84,7 @@ const props = defineProps({
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()
 	if (extension != 'pdf') {
-		return __('Only PDF file is allowed')
+		return 'Only PDF file is allowed'
 	}
 }
 
@@ -108,13 +108,13 @@ const submitResume = (close) => {
 		{
 			validate() {
 				if (!resume.value) {
-					return __('Please upload your resume')
+					return 'Please upload your resume'
 				}
 			},
 			onSuccess() {
 				createToast({
-					title: __('Success'),
-					text: __('Your application has been submitted'),
+					title: 'Success',
+					text: 'Your application has been submitted',
 					icon: 'check',
 					iconClasses: 'bg-surface-green-3 text-ink-white rounded-md p-px',
 				})
@@ -123,7 +123,7 @@ const submitResume = (close) => {
 			},
 			onError(err) {
 				createToast({
-					title: __('Error'),
+					title: 'Error',
 					text: err.messages?.[0] || err,
 					icon: 'x',
 					iconClasses: 'bg-surface-red-5 text-ink-white rounded-md p-px',

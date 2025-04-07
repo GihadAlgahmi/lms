@@ -149,8 +149,8 @@ const jobTypes = computed(() => {
 })
 const pageMeta = computed(() => {
 	return {
-		title: __('Jobs'),
-		description: __('An open job board for the community'),
+		title: 'Jobs',
+		description: 'An open job board for the community',
 	}
 })
 

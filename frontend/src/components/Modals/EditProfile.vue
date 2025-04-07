@@ -1,11 +1,11 @@
 <template>
 	<Dialog
 		:options="{
-			title: __('Edit your profile'),
+			title: 'Edit your profile',
 			size: 'xl',
 			actions: [
 				{
-					label: __('Save'),
+					label: 'Save',
 					variant: 'solid',
 					onClick: (close) => saveProfile(close),
 				},
@@ -26,7 +26,7 @@
 								{{
 									uploading
 										? `Uploading ${progress}%`
-										: __('Upload a profile image')
+										: 'Upload a profile image'
 								}}
 							</Button>
 						</div>
@@ -94,7 +94,7 @@ import {
 	createResource,
 	TextEditor,
 } from 'frappe-ui'
-import { reactive, watch, defineModel } from 'vue'
+import { reactive, watch } from 'vue'
 import { FileText, X } from 'lucide-vue-next'
 import { getFileSize, showToast, escapeHTML } from '@/utils'
 
