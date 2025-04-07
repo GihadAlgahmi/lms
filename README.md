@@ -1,6 +1,5 @@
 <div align="center" markdown="1">
 
-<img src=".github/lms-logo.png" alt="Frappe Learning logo" width="80" height="80"/>
 <h1>Frappe Learning</h1>
 
 **Easy to use, open source, Learning Management System**
@@ -67,38 +66,14 @@ In 2021, we were looking for a Learning Management System to launch [Mon.School]
 </details>
 
 
-### Under the Hood
-
-- [**Frappe Framework**](https://github.com/frappe/frappe): A full-stack web application framework.
-
-- [**Frappe UI**](https://github.com/frappe/frappe-ui): A Vue-based UI library, to provide a modern user interface.
 
 ## Production Setup
 
-### Managed Hosting
-
-You can try [Frappe Cloud](https://frappecloud.com), a simple, user-friendly and sophisticated [open-source](https://github.com/frappe/press) platform to host Frappe applications with peace of mind.
-
-It takes care of installation, setup, upgrades, monitoring, maintenance and support of your Frappe deployments. It is a fully featured developer platform with an ability to manage and control multiple Frappe deployments.
-
-<div>
-	<a href="https://frappecloud.com/lms/signup" target="_blank">
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="https://frappe.io/files/try-on-fc-white.png">
-			<img src="https://frappe.io/files/try-on-fc-black.png" alt="Try on Frappe Cloud" height="28" />
-		</picture>
-	</a>
-</div>
 
 ### Self Hosting
 
 Follow these steps to set up Frappe Learning in production:
 
-**Step 1**: Download the easy install script
-
-```bash
-wget https://frappe.io/easy-install.py
-```
 
 **Step 2**: Run the deployment command
 
@@ -151,7 +126,7 @@ To setup the repository locally follow the steps mentioned below:
 1. Start the server by running `bench start`
 1. In a separate terminal window, create a new site by running `bench new-site learning.test`
 1. Map your site to localhost with the command `bench --site learning.test add-to-hosts`
-1. Get the Learning app. Run `bench get-app https://github.com/frappe/lms`
+1. Get the Learning app. Run `bench get-app https://github.com/GihadAlgahmi/lms.git`
 1. Run `bench --site learning.test install-app lms`.
 1. Now open the URL `http://learning.test:8000/lms` in your browser, you should see the app running
 
