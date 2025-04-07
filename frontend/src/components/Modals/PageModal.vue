@@ -7,7 +7,7 @@
 			size: 'lg',
 			actions: [
 				{
-					label: 'Add',
+					label: _('Add'),
 					variant: 'solid',
 					onClick: (close) => {
 						addWebPage(close)

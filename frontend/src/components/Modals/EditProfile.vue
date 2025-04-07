@@ -1,11 +1,11 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Edit your profile',
+			title: __('Edit your profile'),
 			size: 'xl',
 			actions: [
 				{
-					label: 'Save',
+					label: __('Save'),
 					variant: 'solid',
 					onClick: (close) => saveProfile(close),
 				},
@@ -26,7 +26,7 @@
 								{{
 									uploading
 										? `Uploading ${progress}%`
-										: 'Upload a profile image'
+										: __('Upload a profile image')
 								}}
 							</Button>
 						</div>
@@ -64,6 +64,12 @@
 					:label="__('Last Name')"
 					class="mb-4"
 				/>
+				<Link
+					v-model="profile.language"
+					doctype="Language"
+					:label="__('Language')"
+					class="mb-4"
+				/>
 				<FormControl
 					v-model="profile.headline"
 					:label="__('Headline')"
@@ -97,6 +103,7 @@ import {
 import { reactive, watch } from 'vue'
 import { FileText, X } from 'lucide-vue-next'
 import { getFileSize, showToast, escapeHTML } from '@/utils'
+import Link from '@/components/Controls/Link.vue'
 
 const reloadProfile = defineModel('reloadProfile')
 
@@ -110,6 +117,7 @@ const props = defineProps({
 const profile = reactive({
 	first_name: '',
 	last_name: '',
+	language: '',
 	headline: '',
 	bio: '',
 	image: '',
@@ -161,10 +169,29 @@ const saveProfile = (close) => {
 	)
 }
 
+watch(
+	() => profile.language,
+	(newVal, oldVal) => {
+		if (newVal && newVal !== oldVal) {
+			frappe.call('frappe.client.set_value', {
+				doctype: 'User',
+				name: props.profile.data.name,
+				fieldname: {
+					language: newVal
+				}
+			}).then(() => {
+				showToast(__('Success'), __('Language updated'), 'check')
+			}).catch((err) => {
+				showToast(__('Error'), err.message || __('Could not update language'), 'x')
+			})
+		}
+	}
+)
+
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()
 	if (!['jpg', 'jpeg', 'png'].includes(extension)) {
-		return 'Only image file is allowed.'
+		return __('Only image file is allowed.')
 	}
 }
 
@@ -182,6 +209,7 @@ watch(
 		if (newVal) {
 			profile.first_name = newVal.first_name
 			profile.last_name = newVal.last_name
+			profile.language = newVal.language
 			profile.headline = newVal.headline
 			profile.bio = newVal.bio
 			if (newVal.user_image) imageResource.submit({ image: newVal.user_image })
