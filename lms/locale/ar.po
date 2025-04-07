@@ -3905,40 +3905,40 @@ msgstr "تم استلام الدفعة"
 #. Settings'
 #: lms/lms/doctype/lms_settings/lms_settings.json
 msgid "Payment Reminder Template"
-msgstr ""
+msgstr "قالب تذكير الدفع"
 
 #. Label of the payment_settings_tab (Tab Break) field in DocType 'LMS
 #. Settings'
 #: lms/lms/doctype/lms_settings/lms_settings.json
 msgid "Payment Settings"
-msgstr ""
+msgstr "إعدادات الدفع"
 
 #: frontend/src/pages/Billing.vue:21
 msgid "Payment for "
-msgstr ""
+msgstr "دفع ثمن"
 
 #. Label of the payment_for_certificate (Check) field in DocType 'LMS Payment'
 #: lms/lms/doctype/lms_payment/lms_payment.json
 msgid "Payment for Certificate"
-msgstr ""
+msgstr "دفع ثمن الشهادة"
 
 #. Label of the payment_for_document (Dynamic Link) field in DocType 'LMS
 #. Payment'
 #: lms/lms/doctype/lms_payment/lms_payment.json
 msgid "Payment for Document"
-msgstr ""
+msgstr "الدفع مقابل الوثيقة"
 
 #. Label of the payment_for_document_type (Select) field in DocType 'LMS
 #. Payment'
 #: lms/lms/doctype/lms_payment/lms_payment.json
 msgid "Payment for Document Type"
-msgstr ""
+msgstr "الدفع مقابل نوع المستند"
 
 #. Label of the payments_app_is_not_installed (HTML) field in DocType 'LMS
 #. Settings'
 #: lms/lms/doctype/lms_settings/lms_settings.json
 msgid "Payments app is not installed"
-msgstr ""
+msgstr "لم يتم تثبيت تطبيق المدفوعات"
 
 #. Option for the 'Status' (Select) field in DocType 'Cohort Join Request'
 #. Option for the 'Status' (Select) field in DocType 'Invite Request'
