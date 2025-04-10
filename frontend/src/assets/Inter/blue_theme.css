@@ -134,7 +134,7 @@ html {
 	  }
 	
 	/* هذا يقوم بتطبيق تخطيط ذو عمود واحد عند تقليص حجم الشاشة */
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 640px) {
 		.container {
 			display: grid;
 			grid-template-columns: repeat(1, minmax(200px, 1fr));
