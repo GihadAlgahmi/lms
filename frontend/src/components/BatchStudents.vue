@@ -264,26 +264,27 @@ const students = createResource({
 	auto: true,
 	onSuccess(data) {
 		chartData.value = getChartData()
-		showProgressChart.value = data.length && true
+		showProgressChart.value =
+			data.length && (props.batch?.courses?.length || assessmentCount.value)
 	},
 })
 
 const getStudentColumns = () => {
 	let columns = [
 		{
-			label: 'Full Name',
+			label: __('Full Name'),
 			key: 'full_name',
 			width: '20rem',
 			icon: 'user',
 		},
 		{
-			label: 'Progress',
+			label: __('Progress'),
 			key: 'progress',
 			width: '15rem',
 			icon: 'activity',
 		},
 		{
-			label: 'Last Active',
+			label: __('Last Active'),
 			key: 'last_active',
 			width: '10rem',
 			align: 'center',

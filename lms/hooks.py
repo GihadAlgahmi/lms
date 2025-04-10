@@ -233,7 +233,6 @@ lms_markdown_macro_renderers = {
 page_renderer = [
 	"lms.page_renderers.ProfileRedirectPage",
 	"lms.page_renderers.ProfilePage",
-	"lms.page_renderers.CoursePage",
 	"lms.page_renderers.SCORMRenderer",
 ]
 
@@ -241,6 +240,8 @@ page_renderer = [
 profile_url_prefix = "/users/"
 
 signup_form_template = "lms.plugins.show_custom_signup"
+
+on_login = "lms.lms.user.on_login"
 
 add_to_apps_screen = [
 	{

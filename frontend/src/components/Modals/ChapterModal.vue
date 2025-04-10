@@ -38,7 +38,9 @@
 							<div class="mb-4">
 								<Button @click="openFileSelector" :loading="uploading">
 									{{
-										uploading ? `Uploading ${progress}%` : 'Upload an zip file'
+										uploading
+											? `${__('Uploading')} ${progress}%`
+											: __('Upload an zip file')
 									}}
 								</Button>
 							</div>
@@ -77,15 +79,16 @@ import {
 	FormControl,
 	Switch,
 } from 'frappe-ui'
-import { reactive, watch } from 'vue'
+import { reactive, watch, inject } from 'vue'
 import { showToast, getFileSize } from '@/utils/'
 import { capture } from '@/telemetry'
 import { FileText, X } from 'lucide-vue-next'
-import { useSettings } from '@/stores/settings'
+import { useOnboarding } from 'frappe-ui/frappe'
 
 const show = defineModel()
 const outline = defineModel('outline')
-const settingsStore = useSettings()
+const user = inject('$user')
+const { updateOnboardingStep } = useOnboarding('learning')
 
 const props = defineProps({
 	course: {
@@ -139,15 +142,15 @@ const addChapter = async (close) => {
 				return validateChapter()
 			},
 			onSuccess: (data) => {
+				if (user.data?.is_system_manager)
+					updateOnboardingStep('create_first_chapter')
+
 				capture('chapter_created')
 				chapterReference.submit(
 					{ name: data.name },
 					{
 						onSuccess(data) {
 							cleanChapter()
-							/* if (!settingsStore.onboardingDetails.data?.is_onboarded) {
-								settingsStore.onboardingDetails.reload()
-							} */
 							outline.value.reload()
 							showToast(
 								__('Success'),

@@ -533,10 +533,11 @@ def has_course_evaluator_role(member=None):
 
 
 def has_student_role(member=None):
-	return frappe.db.get_value(
-		"Has Role",
-		{"parent": member or frappe.session.user, "role": "LMS Student"},
-		"name",
+	roles = frappe.get_roles(member or frappe.session.user)
+	return (
+		"Moderator" not in roles
+		and "Course Creator" not in roles
+		and "Batch Evaluator" not in roles
 	)
 
 
@@ -1156,7 +1157,6 @@ def get_course_details(course):
 		],
 		as_dict=1,
 	)
-	course_details.tags = course_details.tags.split(",") if course_details.tags else []
 
 	course_details.instructors = get_instructors(course_details.name)
 	# course_details.is_instructor = is_instructor(course_details.name)
@@ -1889,16 +1889,16 @@ def update_payment_record(doctype, docname):
 
 		try:
 			if payment_for_certificate:
-				update_certificate_purchase(docname)
+				update_certificate_purchase(docname, data.payment)
 			elif doctype == "LMS Course":
-				enroll_in_course(data.payment, docname)
+				enroll_in_course(docname, data.payment)
 			else:
 				enroll_in_batch(docname, data.payment)
 		except Exception as e:
 			frappe.log_error(frappe.get_traceback(), _("Enrollment Failed"))
 
 
-def enroll_in_course(payment_name, course):
+def enroll_in_course(course, payment_name):
 	if not frappe.db.exists(
 		"LMS Enrollment", {"member": frappe.session.user, "course": course}
 	):
@@ -1950,12 +1950,14 @@ def enroll_in_batch(batch, payment_name=None):
 		new_student.save()
 
 
-def update_certificate_purchase(course):
+def update_certificate_purchase(course, payment_name):
 	frappe.db.set_value(
 		"LMS Enrollment",
 		{"member": frappe.session.user, "course": course},
-		"purchased_certificate",
-		1,
+		{
+			"purchased_certificate": 1,
+			"payment": payment_name,
+		},
 	)
 
 

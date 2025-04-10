@@ -210,27 +210,27 @@ const submitFeedback = () => {
 const feedbackColumns = computed(() => {
 	return [
 		{
-			label: 'Member',
+			label: __('Member'),
 			key: 'member_name',
 			width: '10rem',
 		},
 		{
-			label: 'Feedback',
+			label: __('Feedback'),
 			key: 'feedback',
 			width: '15rem',
 		},
 		{
-			label: 'Content',
+			label: __('Content'),
 			key: 'content',
 			width: '9rem',
 		},
 		{
-			label: 'Instructors',
+			label: __('Instructors'),
 			key: 'instructors',
 			width: '9rem',
 		},
 		{
-			label: 'Value',
+			label: __('Value'),
 			key: 'value',
 			width: '9rem',
 		},

@@ -13,7 +13,10 @@
 			</Button>
 			<TabButtons
 				class="inline-block"
-				:buttons="[{ label: __('Unread'), active: true }, { label: __('Read') }]"
+				:buttons="[
+					{ label: __('Unread'), active: true },
+					{ label: __('Read') },
+				]"
 				v-model="activeTab"
 			/>
 		</div>
@@ -65,12 +68,14 @@ import {
 	TabButtons,
 	Button,
 	Tooltip,
+	usePageMeta,
 } from 'frappe-ui'
+import { sessionStore } from '../stores/session'
 import { computed, inject, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { X } from 'lucide-vue-next'
-import { updateDocumentTitle } from '@/utils'
 
+const { brand } = sessionStore()
 const user = inject('$user')
 const socket = inject('$socket')
 const activeTab = ref(__('Unread'))
@@ -145,14 +150,12 @@ const breadcrumbs = computed(() => {
 	return crumbs
 })
 
-const pageMeta = computed(() => {
+usePageMeta(() => {
 	return {
 		title: __('Notifications'),
-		description: __('All your notifications in one place.'),
+		icon: brand.favicon,
 	}
 })
-
-updateDocumentTitle(pageMeta)
 </script>
 <style>
 .notification strong {

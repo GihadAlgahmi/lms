@@ -5,7 +5,7 @@
 			size: '2xl',
 			actions: [
 				{
-					label: 'Post',
+					label: __('Post'),
 					variant: 'solid',
 					onClick: (close) => submitTopic(close),
 				},
@@ -115,7 +115,7 @@ const submitTopic = (close) => {
 				)
 			},
 			onError(err) {
-				showToast('Error', err.message, 'x')
+				showToast(__('Error'), err.message, 'x')
 			},
 		}
 	)

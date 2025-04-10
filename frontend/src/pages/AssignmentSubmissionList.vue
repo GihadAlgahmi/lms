@@ -84,14 +84,17 @@ import {
 	ListRows,
 	ListRow,
 	ListRowItem,
+	usePageMeta,
 } from 'frappe-ui'
 import { computed, inject, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Pencil } from 'lucide-vue-next'
+import { sessionStore } from '../stores/session'
 import Link from '@/components/Controls/Link.vue'
 
 const user = inject('$user')
 const dayjs = inject('$dayjs')
+const { brand } = sessionStore()
 const router = useRouter()
 const assignmentID = ref('')
 const member = ref('')
@@ -164,23 +167,23 @@ const reloadSubmissions = () => {
 const submissionColumns = computed(() => {
 	return [
 		{
-			label: 'Member',
+			label: __('Member'),
 			key: 'member_name',
 			width: 1,
 		},
 		{
-			label: 'Assignment',
+			label: __('Assignment'),
 			key: 'assignment_title',
 			width: 2,
 		},
 		{
-			label: 'Submitted',
+			label: __('Submitted'),
 			key: 'creation',
 			width: 1,
 			align: 'left',
 		},
 		{
-			label: 'Status',
+			label: __('Status'),
 			key: 'status',
 			width: 1,
 			align: 'center',
@@ -190,10 +193,10 @@ const submissionColumns = computed(() => {
 
 const statusOptions = computed(() => {
 	return [
-		{ label: '', value: '' },
-		{ label: 'Pass', value: 'Pass' },
-		{ label: 'Fail', value: 'Fail' },
-		{ label: 'Not Graded', value: 'Not Graded' },
+		{ label: __(''), value: '' },
+		{ label: __('Pass'), value: 'Pass' },
+		{ label: __('Fail'), value: 'Fail' },
+		{ label: __('Not Graded'), value: 'Not Graded' },
 	]
 })
 
@@ -213,5 +216,12 @@ const breadcrumbs = computed(() => {
 			label: __('Assignment Submissions'),
 		},
 	]
+})
+
+usePageMeta(() => {
+	return {
+		title: __('Assignment Submissions'),
+		icon: brand.favicon,
+	}
 })
 </script>

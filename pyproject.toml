@@ -3,7 +3,7 @@ name = "lms"
 authors = [
     { name = "Frappe Technologies Pvt Ltd", email = "developers@frappe.io"}
 ]
-description = " Learning Management System"
+description = "Easy to use, open source, Learning Management System"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]

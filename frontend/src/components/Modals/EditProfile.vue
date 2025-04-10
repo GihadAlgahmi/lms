@@ -25,7 +25,7 @@
 							<Button @click="openFileSelector" :loading="uploading">
 								{{
 									uploading
-										? `Uploading ${progress}%`
+										? `${__('Uploading')} ${progress}%`
 										: __('Upload a profile image')
 								}}
 							</Button>
@@ -163,30 +163,11 @@ const saveProfile = (close) => {
 				reloadProfile.value.reload()
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		}
 	)
 }
-
-watch(
-	() => profile.language,
-	(newVal, oldVal) => {
-		if (newVal && newVal !== oldVal) {
-			frappe.call('frappe.client.set_value', {
-				doctype: 'User',
-				name: props.profile.data.name,
-				fieldname: {
-					language: newVal
-				}
-			}).then(() => {
-				showToast(__('Success'), __('Language updated'), 'check')
-			}).catch((err) => {
-				showToast(__('Error'), err.message || __('Could not update language'), 'x')
-			})
-		}
-	}
-)
 
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()

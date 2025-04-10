@@ -45,7 +45,7 @@
 								<div class="">
 									<Button @click="openFileSelector" :loading="uploading">
 										{{
-											uploading ? `Uploading ${progress}%` : __('Upload an image')
+											uploading ? `Uploading ${progress}%` : 'Upload an image'
 										}}
 									</Button>
 								</div>
@@ -99,7 +99,7 @@
 </template>
 <script setup>
 import { FormControl, FileUploader, Button, Switch } from 'frappe-ui'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { getFileSize, validateFile } from '@/utils'
 import { X } from 'lucide-vue-next'
 import Link from '@/components/Controls/Link.vue'

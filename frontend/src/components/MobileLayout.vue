@@ -96,21 +96,21 @@ onMounted(() => {
 const addOtherLinks = () => {
 	if (user) {
 		otherLinks.value.push({
-			label: 'Notifications',
+			label: __('Notifications'),
 			icon: 'Bell',
 			to: 'Notifications',
 		})
 		otherLinks.value.push({
-			label: 'Profile',
+			label: __('Profile'),
 			icon: 'UserRound',
 		})
 		otherLinks.value.push({
-			label: 'Log out',
+			label: __('Log out'),
 			icon: 'LogOut',
 		})
 	} else {
 		otherLinks.value.push({
-			label: 'Log in',
+			label: __('Log in'),
 			icon: 'LogIn',
 		})
 	}
@@ -127,7 +127,7 @@ watch(userResource, () => {
 
 const addQuizzes = () => {
 	otherLinks.value.push({
-		label: 'Quizzes',
+		label: __('Quizzes'),
 		icon: 'CircleHelp',
 		to: 'Quizzes',
 	})
@@ -138,12 +138,12 @@ let isActive = (tab) => {
 }
 
 const handleClick = (tab) => {
-	if (tab.label == 'Log in') window.location.href = '/login'
-	else if (tab.label == 'Log out')
+	if (tab.label == __('Log in')) window.location.href = '/login'
+	else if (tab.label == __('Log out'))
 		logout.submit().then(() => {
 			isLoggedIn = false
 		})
-	else if (tab.label == 'Profile')
+	else if (tab.label == __('Profile'))
 		router.push({
 			name: 'Profile',
 			params: {
@@ -154,8 +154,8 @@ const handleClick = (tab) => {
 }
 
 const isVisible = (tab) => {
-	if (tab.label == 'Log in') return !isLoggedIn
-	else if (tab.label == 'Log out') return isLoggedIn
+	if (tab.label == __('Log in')) return !isLoggedIn
+	else if (tab.label == __('Log out')) return isLoggedIn
 	else return true
 }
 </script>

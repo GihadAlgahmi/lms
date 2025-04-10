@@ -14,6 +14,7 @@ import dayjs from '@/utils/dayjs'
 import Embed from '@editorjs/embed'
 import SimpleImage from '@editorjs/simple-image'
 import Table from '@editorjs/table'
+import { usersStore } from '../stores/user'
 
 export function createToast(options) {
 	toast({
@@ -158,7 +159,10 @@ export function getEditorTools() {
 		quiz: Quiz,
 		assignment: Assignment,
 		upload: Upload,
-		markdown: Markdown,
+		markdown: {
+			class: Markdown,
+			inlineToolbar: true,
+		},
 		image: SimpleImage,
 		table: {
 			class: Table,
@@ -174,9 +178,6 @@ export function getEditorTools() {
 		codeBox: {
 			class: CodeBox,
 			config: {
-				themeURL:
-					'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/atom-one-dark.min.css',
-				themeName: 'atom-one-dark',
 				useDefaultTheme: 'dark',
 			},
 		},
@@ -566,4 +567,9 @@ export const escapeHTML = (text) => {
 		/[&<>"'`=]/g,
 		(char) => escape_html_mapping[char] || char
 	)
+}
+
+export const canCreateCourse = () => {
+	const { userResource } = usersStore()
+	return userResource.data?.is_instructor || userResource.data?.is_moderator
 }

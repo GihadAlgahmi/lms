@@ -177,7 +177,9 @@ def get_user_info():
 	user.is_instructor = "Course Creator" in user.roles
 	user.is_moderator = "Moderator" in user.roles
 	user.is_evaluator = "Batch Evaluator" in user.roles
-	user.is_student = "LMS Student" in user.roles
+	user.is_student = (
+		not user.is_instructor and not user.is_moderator and not user.is_evaluator
+	)
 	user.is_fc_site = is_fc_site()
 	user.is_system_manager = "System Manager" in user.roles
 	if user.is_fc_site and user.is_system_manager:
@@ -229,6 +231,12 @@ def validate_billing_access(billing_type, name):
 			access = False
 			message = _("You are already enrolled for this batch.")
 
+		seat_count = frappe.get_cached_value("LMS Batch", name, "seat_count")
+		number_of_students = frappe.db.count("LMS Batch Enrollment", {"batch": name})
+		if seat_count <= number_of_students:
+			access = False
+			message = _("Batch is sold out.")
+
 	elif access and billing_type == "certificate":
 		purchased_certificate = frappe.db.exists(
 			"LMS Enrollment",
@@ -273,6 +281,7 @@ def get_job_details(job):
 			"type",
 			"company_name",
 			"company_logo",
+			"company_website",
 			"name",
 			"creation",
 			"description",
@@ -1250,6 +1259,11 @@ def is_guest_allowed():
 	return frappe.get_cached_value("LMS Settings", None, "allow_guest_access")
 
 
+@frappe.whitelist(allow_guest=True)
+def is_learning_path_enabled():
+	return frappe.get_cached_value("LMS Settings", None, "enable_learning_paths")
+
+
 @frappe.whitelist()
 def cancel_evaluation(evaluation):
 	evaluation = frappe._dict(evaluation)
@@ -1295,13 +1309,23 @@ def get_certification_details(course):
 		membership = frappe.db.get_value(
 			"LMS Enrollment",
 			filters,
-			["name", "certificate", "purchased_certificate"],
+			["name", "purchased_certificate"],
 			as_dict=1,
 		)
 
 	paid_certificate = frappe.db.get_value("LMS Course", course, "paid_certificate")
+	certificate = frappe.db.get_value(
+		"LMS Certificate",
+		{"member": frappe.session.user, "course": course},
+		["name", "template"],
+		as_dict=1,
+	)
 
-	return {"membership": membership, "paid_certificate": paid_certificate}
+	return {
+		"membership": membership,
+		"paid_certificate": paid_certificate,
+		"certificate": certificate,
+	}
 
 
 @frappe.whitelist()
@@ -1321,3 +1345,24 @@ def save_role(user, role, value):
 	else:
 		frappe.db.delete("Has Role", {"parent": user, "role": role})
 	return True
+
+
+@frappe.whitelist()
+def add_an_evaluator(email):
+	if not frappe.db.exists("User", email):
+		user = frappe.new_doc("User")
+		user.update(
+			{
+				"email": email,
+				"first_name": email.split("@")[0].capitalize(),
+				"enabled": 1,
+			}
+		)
+		user.insert()
+		user.add_roles("Batch Evaluator")
+
+	evaluator = frappe.new_doc("Course Evaluator")
+	evaluator.evaluator = email
+	evaluator.insert()
+
+	return evaluator

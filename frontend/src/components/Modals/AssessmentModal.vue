@@ -79,8 +79,8 @@ const addAssessment = (close) => {
 
 const assessmentTypes = computed(() => {
 	return [
-		{ label: 'Quiz', value: 'LMS Quiz' },
-		{ label: 'Assignment', value: 'LMS Assignment' },
+		{ label: __('Quiz'), value: 'LMS Quiz' },
+		{ label: __('Assignment'), value: 'LMS Assignment' },
 	]
 })
 </script>

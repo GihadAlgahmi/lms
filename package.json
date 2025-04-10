@@ -1,7 +1,7 @@
 {
   "name": "frappe_lms",
   "version": "1.0.0",
-  "description": "Learning Management System",
+  "description": "Easy to use, open-source, Learning Management System",
   "workspaces1": [
     "frappe-ui",
     "frontend"
@@ -16,7 +16,18 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GihadAlgahmi/lms.git"
+  },
+  "author": "Frappe",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/GihadAlgahmi/lms/issues"
+  },
+  "homepage": "https://github.com/GihadAlgahmi/lms#readme",
+  "devDependencies": {
+    "cypress": "^13.9.0",
+    "cypress-file-upload": "^5.0.8"
+  },
+  "dependencies": {
+    "pre-commit": "^1.2.2"
   }
-
-
 }

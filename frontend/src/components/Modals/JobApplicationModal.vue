@@ -39,7 +39,7 @@
 							<div class="">
 								<Button @click="openFileSelector" :loading="uploading">
 									{{
-										uploading ? `Uploading ${progress}%` : __('Upload your resume')
+										uploading ? `Uploading ${progress}%` : 'Upload your resume'
 									}}
 								</Button>
 							</div>
@@ -113,8 +113,8 @@ const submitResume = (close) => {
 			},
 			onSuccess() {
 				createToast({
-					title: 'Success',
-					text: 'Your application has been submitted',
+					title: __('Success'),
+					text: __('Your application has been submitted'),
 					icon: 'check',
 					iconClasses: 'bg-surface-green-3 text-ink-white rounded-md p-px',
 				})
@@ -123,7 +123,7 @@ const submitResume = (close) => {
 			},
 			onError(err) {
 				createToast({
-					title: 'Error',
+					title: __('Error'),
 					text: err.messages?.[0] || err,
 					icon: 'x',
 					iconClasses: 'bg-surface-red-5 text-ink-white rounded-md p-px',

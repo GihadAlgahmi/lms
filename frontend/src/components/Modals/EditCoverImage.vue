@@ -13,7 +13,7 @@
 					<div class="flex items-center justify-center space-x-2">
 						<TextInput
 							type="text"
-							:placeholder="__('search by keyword')"
+							placeholder="search by keyword"
 							v-model="search"
 							:debounce="300"
 							class="flex-1"
@@ -28,7 +28,7 @@
 							>
 								<div class="">
 									<Button @click="openFileSelector" :loading="uploading">
-										{{ uploading ? `Uploading ${progress}%` : __('Upload Image') }}
+										{{ uploading ? `Uploading ${progress}%` : 'Upload Image' }}
 									</Button>
 								</div>
 							</template>
