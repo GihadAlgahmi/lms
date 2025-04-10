@@ -1,2 +1,5 @@
 @import './assets/Inter/inter.css';
 @import 'frappe-ui/src/style.css';
+
+@import './assets/Inter/blue_theme.css';
+@import './assets/Inter/fonts.css';
