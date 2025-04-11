@@ -452,9 +452,9 @@ const canModifyAssignment = computed(() => {
 
 const submissionStatusOptions = computed(() => {
 	return [
-		{ label: 'Not Graded', value: 'Not Graded' },
-		{ label: 'Pass', value: 'Pass' },
-		{ label: 'Fail', value: 'Fail' },
+		{ label: __('Not Graded'), value: 'Not Graded' },
+		{ label: __('Pass'), value: 'Pass' },
+		{ label: __('Fail'), value: 'Fail' },
 	]
 })
 

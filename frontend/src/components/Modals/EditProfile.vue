@@ -103,7 +103,9 @@ import {
 import { reactive, watch } from 'vue'
 import { FileText, X } from 'lucide-vue-next'
 import { getFileSize, showToast, escapeHTML } from '@/utils'
+import { updateRTLSettings } from '@/utils/rtl'
 import Link from '@/components/Controls/Link.vue'
+import '@/assets/css/rtl.css'
 
 const reloadProfile = defineModel('reloadProfile')
 
@@ -183,6 +185,16 @@ const saveImage = (file) => {
 const removeImage = () => {
 	profile.image = null
 }
+
+// Watch for language changes
+watch(
+	() => profile.language,
+	(newLang) => {
+		if (newLang) {
+			updateRTLSettings(newLang)
+		}
+	}
+)
 
 watch(
 	() => props.profile.data,

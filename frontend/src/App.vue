@@ -17,6 +17,7 @@ import { stopSession } from '@/telemetry'
 import { init as initTelemetry } from '@/telemetry'
 import { usersStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import { initRTL, watchLanguageChanges } from '@/utils/rtl'
 
 const screenSize = useScreenSize()
 let { userResource } = usersStore()
@@ -45,10 +46,19 @@ const Layout = computed(() => {
 
 onMounted(async () => {
 	if (userResource.data) await initTelemetry()
+	initRTL()
+	watchLanguageChanges()
 })
 
 onUnmounted(() => {
 	noSidebar.value = false
 	stopSession()
+})
+
+// Watch for language changes in localStorage
+window.addEventListener('storage', (e) => {
+	if (e.key === 'lang') {
+		initRTL()
+	}
 })
 </script>

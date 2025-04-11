@@ -1,0 +1,141 @@
+/* RTL Support */
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL specific adjustments */
+body.rtl .form-control {
+  text-align: right;
+}
+
+body.rtl .text-left {
+  text-align: right !important;
+}
+
+body.rtl .text-right {
+  text-align: left !important;
+}
+
+body.rtl .ml-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+
+body.rtl .mr-2 {
+  margin-right: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+body.rtl .pl-2 {
+  padding-left: 0 !important;
+  padding-right: 0.5rem !important;
+}
+
+body.rtl .pr-2 {
+  padding-right: 0 !important;
+  padding-left: 0.5rem !important;
+}
+
+/* RTL specific flexbox adjustments */
+body.rtl .flex-row-reverse {
+  flex-direction: row !important;
+}
+
+body.rtl .flex-row {
+  flex-direction: row-reverse !important;
+}
+
+/* RTL specific grid adjustments */
+body.rtl .grid {
+  direction: rtl;
+}
+
+/* RTL specific form adjustments */
+body.rtl .form-group {
+  text-align: right;
+}
+
+body.rtl .form-label {
+  text-align: right;
+}
+
+/* RTL specific button adjustments */
+body.rtl .btn-group > .btn:not(:first-child) {
+  margin-right: -1px;
+  margin-left: 0;
+}
+
+body.rtl .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* RTL specific modal adjustments */
+body.rtl .modal-header .close {
+  margin: -1rem auto -1rem -1rem;
+}
+
+/* RTL specific table adjustments */
+body.rtl table {
+  direction: rtl;
+}
+
+body.rtl th {
+  text-align: right;
+}
+
+/* Additional RTL specific adjustments */
+body.rtl .dropdown-menu {
+  text-align: right;
+}
+
+body.rtl .nav-tabs .nav-item {
+  float: right;
+}
+
+body.rtl .nav-tabs .nav-link {
+  margin-right: 0;
+  margin-left: 2px;
+}
+
+body.rtl .input-group > .form-control:not(:last-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+body.rtl .input-group > .input-group-append:not(:last-child) > .btn,
+body.rtl .input-group > .input-group-append:not(:last-child) > .input-group-text,
+body.rtl .input-group > .input-group-prepend:not(:last-child) > .btn,
+body.rtl .input-group > .input-group-prepend:not(:last-child) > .input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* RTL specific list adjustments */
+body.rtl ul,
+body.rtl ol {
+  padding-right: 0;
+  padding-left: 1rem;
+}
+
+/* RTL specific icon adjustments */
+body.rtl .icon-left {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+body.rtl .icon-right {
+  margin-left: 0;
+  margin-right: 0.5rem;
+} 
+
+div.p-2,svg.w-4 ,span.flex-shrink-0.text-sm.duration-300.ease-in-out.ml-2.w-auto.opacity-100, label.block.text-base.font-medium.text-ink-gray-8.select-none {
+  margin: 0 10px;
+}
