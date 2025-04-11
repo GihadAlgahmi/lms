@@ -203,7 +203,7 @@ const userDropdownOptions = computed(() => {
 					icon: Zap,
 					label: 'Powered by Learning',
 					onClick: () => {
-						window.open('https://frappe.io/learning', '_blank')
+						window.open('#', '_blank')
 					},
 				},
 				{
