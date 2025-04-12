@@ -30,22 +30,22 @@ msgstr "% أكتمل"
 #. Paragraph text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
 msgid "<a href=\"/app/lms-settings/LMS%20Settings\">LMS Settings</a>"
-msgstr "إعدادات نظام إدارة التعلم</a>"
+msgstr "<a href=\"/app/lms-settings/LMS%20Settings\">إعدادات نظام إدارة التعلم</a>"
 
 #. Paragraph text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
 msgid "<a href=\"/app/web-page/new-web-page-1\">Setup a Home Page</a>"
-msgstr "<إعداد الصفحة الرئيسية</a>"
+msgstr "<a href=\"/app/web-page/new-web-page-1\">إعداد الصفحة الرئيسية</a>"
 
 #. Paragraph text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
 msgid "<a href=\"/lms/courses\">Visit LMS Portal</a>"
-msgstr "تفضل بزيارة بوابة نظام إدارة التعلم "
+msgstr "<a href=\"/lms/courses\">زيارة بوابة نظام إدارة التعلم</a>"
 
 #. Paragraph text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
 msgid "<a href=\"/lms/courses/new/edit\">Create a Course</a>"
-msgstr "إنشاء دورة تدريبية"
+msgstr "<a href=\"/lms/courses/new/edit\">إنشاء دورة تدريبية</a>"
 
 #. Paragraph text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
@@ -55,17 +55,17 @@ msgstr "التوثيق"
 #. Header text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
 msgid "<span class=\"h4\"><b>Get Started</b></span>"
-msgstr "ابدأ"
+msgstr "<span class=\"h4\"><b>ابدأ</b></span>"
 
 #. Header text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
 msgid "<span class=\"h4\"><b>Master</b></span>"
-msgstr "الرئيسي"
+msgstr "<span class=\"h4\"><b>الرئيسي</b></span>"
 
 #. Header text in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
 msgid "<span style=\"font-size: 18px;\"><b>Statistics</b></span>"
-msgstr "الإحصائيات"
+msgstr "<span style=\"font-size: 18px;\"><b>الإحصائيات</b></span>"
 
 #: lms/lms/doctype/lms_course/lms_course.py:58
 msgid "A course cannot have both paid certificate and certificate of completion."
@@ -492,7 +492,7 @@ msgstr "ستظهر المهمة في أسفل الدرس."
 #: frontend/src/components/AppSidebar.vue:531
 #: frontend/src/pages/AssignmentForm.vue:174
 msgid "Assignments"
-msgstr "تعيينات"
+msgstr "المهام"
 
 #: lms/lms/doctype/lms_question/lms_question.py:43
 msgid "At least one option must be correct for this question."
@@ -4855,17 +4855,17 @@ msgstr "سجل"
 #. Label of the signup_email (Data) field in DocType 'Invite Request'
 #: lms/lms/doctype/invite_request/invite_request.json
 msgid "Signup Email"
-msgstr "البريد الإلكتروني للتسجيل"
+msgstr "البريد الإلكتروني للاشتراك"
 
 #. Label of the signup_settings_tab (Tab Break) field in DocType 'LMS Settings'
 #: lms/lms/doctype/lms_settings/lms_settings.json
 msgid "Signup Settings"
-msgstr "إعدادات التسجيل"
+msgstr "إعدادات الاشتراك"
 
 #. Label of a chart in the LMS Workspace
 #: frontend/src/pages/Statistics.vue:36 lms/lms/workspace/lms/lms.json
 msgid "Signups"
-msgstr "التسجيلات"
+msgstr "الاشتراك"
 
 #. Label of the skill (Table MultiSelect) field in DocType 'User'
 #. Label of the skill (Data) field in DocType 'User Skill'
@@ -5505,7 +5505,7 @@ msgstr "التوقيتات:"
 #: lms/lms/doctype/work_experience/work_experience.json
 #: lms/public/js/common_functions.js:259
 msgid "Title"
-msgstr "اللقب"
+msgstr "العنوان"
 
 #: frontend/src/components/Modals/ChapterModal.vue:172
 msgid "Title is required"
