@@ -205,3 +205,11 @@ html {
 			border-radius: 10px;
 		}
 	}
+
+	.flex.flex-col.justify-between.h-full {
+		overflow: auto;
+	}
+
+	div.p-2,svg.w-4 ,span.flex-shrink-0.text-sm.duration-300.ease-in-out.ml-2.w-auto.opacity-100, label.block.text-base.font-medium.text-ink-gray-8.select-none {
+		margin: 0 10px;
+	  }

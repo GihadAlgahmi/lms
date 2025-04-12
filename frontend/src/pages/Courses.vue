@@ -28,7 +28,7 @@
 			<div
 				class="flex flex-col space-y-2 lg:space-y-0 lg:flex-row lg:items-center lg:space-x-4"
 			>
-				<TabButtons :buttons="courseTabs" v-model="currentTab" />
+				<TabButtons :buttons="courseTabs" v-model="currentTab" value-key="value" />
 				<FormControl
 					v-model="certification"
 					:label="__('Certification')"
@@ -279,12 +279,15 @@ const courseTabs = computed(() => {
 	let tabs = [
 		{
 			label: __('Live'),
+			value: 'Live'
 		},
 		{
 			label: __('New'),
+			value: 'New'
 		},
 		{
 			label: __('Upcoming'),
+			value: 'Upcoming'
 		},
 	]
 	if (
@@ -292,9 +295,9 @@ const courseTabs = computed(() => {
 		user.data?.is_instructor ||
 		user.data?.is_evaluator
 	) {
-		tabs.push({ label: __('Created') })
+		tabs.push({ label: __('Created'), value: 'Created' })
 	} else if (user.data) {
-		tabs.push({ label: __('Enrolled') })
+		tabs.push({ label: __('Enrolled'), value: 'Enrolled' })
 	}
 	return tabs
 })

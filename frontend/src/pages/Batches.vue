@@ -32,6 +32,7 @@
 					v-if="user.data"
 					:buttons="batchTabs"
 					v-model="currentTab"
+					value-key="value"
 				/>
 				<FormControl
 					v-model="certification"
@@ -282,6 +283,7 @@ const batchTabs = computed(() => {
 	let tabs = [
 		{
 			label: __('All'),
+			value: 'All'
 		},
 	]
 
@@ -290,11 +292,11 @@ const batchTabs = computed(() => {
 		user.data?.is_instructor ||
 		user.data?.is_evaluator
 	) {
-		tabs.push({ label: __('Upcoming') })
-		tabs.push({ label: __('Archived') })
-		tabs.push({ label: __('Unpublished') })
+		tabs.push({ label: __('Upcoming'), value: 'Upcoming' })
+		tabs.push({ label: __('Archived'), value: 'Archived' })
+		tabs.push({ label: __('Unpublished'), value: 'Unpublished' })
 	} else if (user.data) {
-		tabs.push({ label: __('Enrolled') })
+		tabs.push({ label: __('Enrolled'), value: 'Enrolled' })
 	}
 	return tabs
 })
